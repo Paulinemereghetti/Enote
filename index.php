@@ -84,6 +84,7 @@
 		                </form>
 		            </div>
 		            <a href="#" class="text-center new-account">Incsription</a>
+					<a href="#" class="text-center new-account">Incsription2</a>
 		        </div>
 		    </div>
 		</div>
