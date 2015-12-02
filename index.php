@@ -16,7 +16,8 @@
 			break;
 		case"/Enote/about.php":
 			$abt="active";
-			break;
+			break; 
+			print("hello");
 		case"/Enote/inscription.php":
 			$insc="active";
 			break;
