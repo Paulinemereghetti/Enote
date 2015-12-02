@@ -1,0 +1,18 @@
+.header
+{
+	position: relative;
+	top :0;
+	background-color:grey;
+}
+
+#formulaire
+{
+	text-align: center;
+}
+
+.footer
+{
+	position: relative;
+	bottom: 0;
+	background-color: grey; 
+}
