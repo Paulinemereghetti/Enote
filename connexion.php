@@ -1,47 +1,25 @@
-<?php
-session_start();
- include("bdINSTA.php");/* Inclusion de la page avec les fonctions de connection */
-
-if (isset($_POST["pseudo"]) && isset($_POST["mdp"]))
-{	
-	/*On stocke le login et mot de passe dans des variables */
 	
-	if (!empty($_POST["pseudo"]) && !empty($_POST["mdp"]))
-	{	
-		$pseudoSaisi = $_POST["pseudo"];
-		$mdpSaisi = $_POST["mdp"];
-		$co = connexion();
-		$requetec="Select UserId,prenom from User where pseudo='$pseudoSaisi' and mdp = '$mdpSaisi'";
-		$res = mysqli_query($co,$requetec) or die(mysqli_error($co));
-		if(mysqli_num_rows($res) == 1)
-		{
-			$_SESSION['connecte'] = true;
-			while($donnee = mysqli_fetch_assoc($res))
-			{
-				$_SESSION['prenom'] = $donnee['prenom'] ;
-			}
-		}
-		else 
-		{ 
-			$_SESSION['connecte'] = false;
-		}	
-		
-		
-	}
-	else
-	{
-	
-	$message ="veuillez entrer un login et un mot de passe"; 
-	
-	
-	}
-	
-
-}
-else
-{
-	$message="incorresspondance dans les attributs name des inputs du formulaire";
-}	
-
-header('Location: index.php');
-?>
+	<div class="container">
+		    <div class="row">
+		        <div class="col-sm-6 col-md-4 col-md-offset-4">
+		            <h1 class="text-center login-title">Rentre vite !</h1>
+		            <div class="account-wall">
+		      
+		                <form class="form-signin" action="connexion_bdd.php" method="post">
+			                <input type="text" class="form-control" placeholder="Pseudo" name="login" required autofocus>
+							<br />
+			                <input type="password" class="form-control" placeholder="Mot de passe" name="pass"required>
+			                <button class="btn btn-lg btn-primary btn-block" type="submit">
+			                    Connexion
+			                </button>
+			                <label class="checkbox pull-left">
+			                    <input type="checkbox" value="remember-me">
+			                    Se souvenir de moi
+			                </label>
+			                <a href="#" class="pull-right need-help">Besoin d'aide ? </a><span class="clearfix"></span>
+		                </form>
+		            </div>
+		            
+		        </div>
+		    </div>
+		</div>
