@@ -13,7 +13,7 @@ include('_head.php');
 		<div class="contenaire">
 			<div class="row">
 		    	<div class="col-sm-6 col-md-4 col-md-offset-4">
-		    		<h2> Inscription </h2>
+		    		<h2> Ajout d'utilisateur </h2>
 		    		<div class="account-wall">
 						<form action="inscription_bdd.php" method="POST">
 							<label> Nom </label>

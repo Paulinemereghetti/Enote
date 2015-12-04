@@ -4,6 +4,7 @@ if ($_SESSION['ouvert'] != true){
     exit();
 }
 include('_head.php');
+include('_menu.php');
 ?>
 	
 	<body>
@@ -12,7 +13,7 @@ include('_head.php');
 			<div class="container">
             
             <div>
-                <?php include('_menu.php'); ?>
+                <?php /*include('_menu.php');*/ ?>
 
             <h4> <?php echo "Bienvenue sur E-note, ".$_SESSION['nom']." ".$_SESSION['prenom']." ! Tu es dans le groupe ".$_SESSION['droit']."." ; ?> </h4>
 
