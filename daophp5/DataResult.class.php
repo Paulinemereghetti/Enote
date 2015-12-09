@@ -61,7 +61,7 @@ abstract class DataResult implements Iterator {
 	 *
 	 * returns an ArrayObject containing row data or false if no (more) rows
 	 */
-	abstract protected function getRow();
+	abstract public function getRow();
 	
 	/**
 	 * method: getRow

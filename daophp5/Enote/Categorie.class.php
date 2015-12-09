@@ -17,9 +17,10 @@ Class Categorie{
 		$this->CommentaireCategorie="";
 	}
 	
+	
 	public function getID()
 	{
-		return $this->CategorieId;
+		return $this->IdCategorie;
 	}
 	
 	public function getTypeCategorie()
@@ -42,9 +43,9 @@ Class Categorie{
 		return $this->CommentaireCategorie;
 	}
 	
-	public function setID($CategorieId)
+	public function setID($IdCategorie)
 	{
-		$this->CategorieId=$CategorieId;
+		$this->IdCategorie=$IdCategorie;
 	}
 	
 	public function setTypeCategorie($TypeCategorie)
@@ -67,6 +68,14 @@ Class Categorie{
 		$this->CommentaireCategorie=$CommentaireCategorie;
 	}
 	
+	public function initCat($TypeCategorie, $IconeCategorie,$RefFacture, $CommentaireCategorie)
+	{
+		
+		$this->TypeCategorie=$TypeCategorie;
+		$this->IconeCategorie=$IconeCategorie;
+		$this->RefFacture=$RefFacture;
+		$this->CommentaireCategorie=$CommentaireCategorie;
+	}
 }
 
 ?>

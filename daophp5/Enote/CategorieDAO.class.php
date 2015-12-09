@@ -9,7 +9,32 @@ class CategorieDAO extends DAO{
 		parent::__construct();
 	}
 	
-
+	public function setParamCat($TypeCategorie,$IconeCategorie,$CommentaireCategorie,$RefFacture)
+	{
+		
+		$this->setTypeCategorie($this->da->escape($TypeCategorie));
+		$this->setIconeCategorie($this->da->escape($IconeCategorie));
+		$this>setRefFacture($this->da->escape($RefFacture));
+		$this->setCommentaireCategorie($this->da->escape($CommentaireCategorie));
+		return $this;
+	}
+	
+	public function getIdCategorieByParam($TypeCategorie,$RefFacture)
+	{
+		$sql="SELECT IdCategorie FROM Categorie WHERE TypeCategorie='".$this->da->escape($TypeCategorie)."' AND RefFacture='".$this->da->escape($RefFacture)."'";
+		$res = $this->retrieve($sql);
+		$res->setFormat("ASSOC");
+		if($res->getNumRows() == 1) {
+			$row = $res->getRow();
+			$categorie = new Categorie();
+			$categorie->setID($row->offsetGet("IdCategorie"));
+			return $categorie->getID();
+		} else {
+			return false;
+		}
+	}
+	
+	
 	
 	public function getAllCategories()
 	{
@@ -38,7 +63,7 @@ class CategorieDAO extends DAO{
 	
 	public function getAllTypesCategories()
 	{
-		$categories = new ArrayObject();
+		$types = new ArrayObject();
 		$sql="SELECT TypeCategorie FROM Categorie";
 		$res = $this->retrieve($sql);
 		$res->setFormat("ASSOC");
@@ -48,15 +73,11 @@ class CategorieDAO extends DAO{
 			
 			foreach($res as $row) {
 				
-				$categorie = new Categorie();
-				$categorie->setTypeCategorie($row->offsetGet("TypeCategorie"));
-				$categorie->setID(1);
-				$categorie->setIconeCategorie("hello");
-				$categorie->setRefFacture("hello");
-				$categorie->setCommentaireCategorie("hello");
-				$categories->append($categorie);
+				$t = new Categorie();
+				$t->setTypeCategorie($row->offsetGet("TypeCategorie"));
+				$types->append($t);
 			}
-			return $categories;
+			return $types;
 		} 
 		else {
 			return false;
@@ -64,38 +85,27 @@ class CategorieDAO extends DAO{
 		
 	}
 	
-	public function getLibelleCategorieById($CategorieId)
+	public function getTypeCategorieById($IdCategorie)
 	{
-		$sql="SELECT LibelleCategorie FROM Categorie WHERE CategorieId='".$this->da->escape($CategorieId)."'";
+		if(!is_int($IdCategorie) && $IdCategorie <= 0) {
+			throw new InvalidArgumentException($IdCategorie." is not a valid argument");
+		}
+		//requete sql
+		$sql="SELECT TypeCategorie FROM Categorie WHERE IdCategorie=".$IdCategorie;
 		$res = $this->retrieve($sql);
 		$res->setFormat("ASSOC");
 		if($res->getNumRows() == 1) {
 			$row = $res->getRow();
 			$categorie = new Categorie();
-			$categorie->setID($row->offsetGet("CategorieId"));
-			$categorie->setLibelle($row->offsetGet("LibelleCategorie"));
-			return $categorie;
+			$categorie->setTypeCategorie($row->offsetGet("TypeCategorie"));
+			$typecat=$categorie->getTypeCategorie();
+			
+			return $typecat;
 		} else {
 			return false;
 		}
 	}
 	
-	public function getCategorieByLibelle($LibelleCategorie)
-	{
-			$sql="SELECT CategorieId FROM Categorie WHERE CategorieId=".$this->da->escape($LibelleCategorie);
-			$res=$this->retrieve($sql);
-			$res->setFormat("ASSOC");
-			if($res->getNumRows()>=1){
-				$row=$res->getRow();
-				$categorie=new Categorie();
-				$categorie->setID($row->offsetGet("CategorieId"));
-				$categorie->setLibelle($row->offsetGet("LibelleCategorie"));
-				return $categorie;
-			}
-			else
-			{
-				return false;
-			}
-	}
+	
 }
 ?>

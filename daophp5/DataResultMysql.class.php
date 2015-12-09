@@ -113,7 +113,7 @@ class DataResultMysql extends DataResult {
 	 * 
 	 * 		ArrayObject or false
 	 */
-	protected function getRow() {		
+	public function getRow() {		
 		if($row = mysql_fetch_array($this->result, $this->format)) {
 			return new ArrayObject($row);
 		}
